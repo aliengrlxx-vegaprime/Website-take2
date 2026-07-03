@@ -1,0 +1,128 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@theme inline {
+  --color-canvas: #121416;
+  --color-surface-1: #171a1d;
+  --color-surface-2: #1d2126;
+  --color-surface-3: #252a30;
+  --color-text-primary: #f3f6f8;
+  --color-text-secondary: #c8d0d8;
+  --color-text-muted: #98a3af;
+  --color-accent: #7dff4f;
+  --color-accent-cyan: #5ce7ff;
+  --color-border-subtle: #2a3037;
+  --color-border-default: #353c45;
+
+  --color-background: #121416;
+  --color-foreground: #f3f6f8;
+  --color-primary: #7dff4f;
+  --color-primary-foreground: #121416;
+  --color-muted: #1d2126;
+  --color-muted-foreground: #98a3af;
+  --color-border: #2a3037;
+  --color-input: #353c45;
+  --color-ring: #5ce7ff;
+  --color-card: #171a1d;
+  --color-card-foreground: #f3f6f8;
+  --color-popover: #171a1d;
+  --color-popover-foreground: #f3f6f8;
+  --color-secondary: #1d2126;
+  --color-secondary-foreground: #f3f6f8;
+  --color-accent-foreground: #121416;
+  --color-destructive: #ff5757;
+  --color-destructive-foreground: #f3f6f8;
+
+  --font-display: "Orbitron", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+}
+
+:root {
+  --radius: 0px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border-subtle);
+  }
+  html, body {
+    background-color: var(--color-canvas);
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--color-text-primary);
+    letter-spacing: 0.01em;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-canvas);
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+@utility font-mono-data {
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+@utility grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 0;
+}
+
+@utility grid-overlay-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(18,20,22,0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18,20,22,0.045) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 0;
+}
+
+@utility section-shell {
+  position: relative;
+  padding-block: 89px;
+  padding-inline: 21px;
+  overflow: hidden;
+}
+
+@utility brand-logo-readable {
+  display: block;
+  object-fit: contain;
+  overflow: visible;
+  filter:
+    drop-shadow(1px 0 0 var(--color-text-primary))
+    drop-shadow(-1px 0 0 var(--color-text-primary))
+    drop-shadow(0 1px 0 var(--color-text-primary))
+    drop-shadow(0 -1px 0 var(--color-text-primary))
+    drop-shadow(0 0 0 var(--color-accent));
+}
