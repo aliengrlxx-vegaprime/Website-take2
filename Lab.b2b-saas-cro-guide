@@ -1,0 +1,432 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useMemo, useState, useId } from "react";
+import { Footer } from "@/components/Footer";
+import { TelegramBubble } from "@/components/TelegramBubble";
+
+export const Route = createFileRoute("/lab/b2b-saas-cro-guide")({
+  head: () => ({
+    meta: [
+      { title: "B2B SaaS Conversion Rate Optimization — AGXX Labs" },
+      {
+        name: "description",
+        content:
+          "A deterministic guide to B2B SaaS CRO. Project trial-to-paid lift, LTV impact, and recurring revenue ROI with the 42 Formula System.",
+      },
+      { property: "og:title", content: "B2B SaaS Conversion Rate Optimization — AGXX Labs" },
+      {
+        property: "og:description",
+        content:
+          "CRO for SaaS is not about A/B tests. It is about recurring revenue, high LTV, and the math that projects ROI before you spend.",
+      },
+      { property: "og:type", content: "article" },
+      {
+        property: "og:url",
+        content: "https://agxxlabs.com/lab/b2b-saas-cro-guide",
+      },
+    ],
+    links: [
+      { rel: "canonical", href: "https://agxxlabs.com/lab/b2b-saas-cro-guide" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "B2B SaaS Conversion Rate Optimization",
+          author: { "@type": "Organization", name: "AGXX Labs" },
+          publisher: { "@type": "Organization", name: "AGXX Labs" },
+          mainEntityOfPage: "https://agxxlabs.com/lab/b2b-saas-cro-guide",
+        }),
+      },
+    ],
+  }),
+  component: B2BSaasCroGuide,
+});
+
+function B2BSaasCroGuide() {
+  return (
+    <main className="relative min-h-screen bg-[#eef1f2] text-[#121416]/85">
+      <article className="section-shell relative z-10">
+        <div className="grid-overlay-light" aria-hidden />
+        <div className="relative z-10 mx-auto flex max-w-[760px] flex-col gap-[34px]">
+          <p className="font-mono-data text-[11px] uppercase tracking-[0.18em] text-[#121416]/55">
+            AGXX Lab · SaaS Methodology
+          </p>
+
+          <h1 className="font-display text-[32px] font-bold uppercase leading-[1.15] tracking-[0.04em] text-[#121416] sm:text-[42px]">
+            B2B SaaS Conversion Rate Optimization
+          </h1>
+
+          <p className="text-[17px] leading-[1.7]">
+            B2B SaaS CRO is not retail CRO with a longer form. The economics are different: the
+            first conversion is rarely the sale, the real value lives in recurring revenue, and a
+            small lift in trial-to-paid rate compounds over years of customer lifetime value. This
+            guide explains how to model SaaS CRO ROI deterministically — using the same 42 Formula
+            System that powers the AGXX Labs Predictive CRO diagnostic.
+          </p>
+
+          <Section title="Why SaaS CRO needs its own math">
+            <p>
+              Most generic CRO advice optimizes for the transaction: more add-to-carts, higher
+              checkout completion, bigger AOV. SaaS funnels have three economic layers:
+            </p>
+            <ul className="ml-[21px] list-disc space-y-[8px]">
+              <li>
+                <strong>Acquisition conversion</strong> — visitor to trial, demo, or qualified
+                lead.
+              </li>
+              <li>
+                <strong>Activation conversion</strong> — trial user to a successful first outcome.
+              </li>
+              <li>
+                <strong>Revenue conversion</strong> — activated user to paid subscriber, expansion,
+                or renewal.
+              </li>
+            </ul>
+            <p>
+              Optimizing only the top layer increases sign-ups that never pay. Optimizing only the
+              bottom layer ignores the pipeline. Predictive CRO models all three layers and their
+              interaction, then prioritizes the fix that moves the most LTV.
+            </p>
+          </Section>
+
+          <Section title="The SaaS CRO ROI identity">
+            <p>
+              For SaaS, the standard ROI formula still holds, but the revenue term must be
+              lifetime-aware:
+            </p>
+            <Formula>
+              LTV&nbsp;=&nbsp;ARPU × Gross Margin × Average Customer Lifetime
+            </Formula>
+            <p>
+              Where ARPU is average revenue per user per month and gross margin is typically 75–85%
+              for software. The lifetime is the inverse of monthly churn:
+            </p>
+            <Formula>
+              Lifetime&nbsp;=&nbsp;1 ÷ Monthly Churn Rate
+            </Formula>
+            <p>
+              A 5% monthly churn rate equals a 20-month average lifetime. A 2% churn rate equals 50
+              months. This is why SaaS CRO ROI is hypersensitive to retention: the same activation
+              lift is worth 2.5× more at low churn than at high churn.
+            </p>
+          </Section>
+
+          <Section title="Projecting incremental LTV from a conversion lift">
+            <p>
+              Start with a baseline: monthly visitors, trial conversion rate, activation rate,
+              trial-to-paid rate, ARPU, and churn. Then model the lift on the layer you intend to
+              fix:
+            </p>
+            <Formula>
+              Incremental Customers&nbsp;=&nbsp;Visitors × (CR<sub>new</sub> − CR<sub>old</sub>)
+              × Activation × Trial-to-Paid
+            </Formula>
+            <Formula>
+              Incremental LTV&nbsp;=&nbsp;Incremental Customers × LTV
+            </Formula>
+            <p>
+              The deterministic difference is that the 42 Formula System does not guess the lift.
+              It derives it from the specific friction observed in the relevant pillar — for
+              example, the drop-off between pricing-page visit and trial start, or the activation
+              failure rate after day three.
+            </p>
+          </Section>
+
+          <Section title="The three SaaS pillars that usually matter most">
+            <p>
+              Across B2B SaaS funnels, three of the nine pillars consistently carry the majority of
+              recoverable revenue:
+            </p>
+            <ul className="ml-[21px] list-disc space-y-[8px]">
+              <li>
+                <strong>Pricing page clarity</strong> — ambiguous tiers, missing comparison
+                context, and hidden fees create invisible friction. Visitors who should trial
+                bounce instead.
+              </li>
+              <li>
+                <strong>Trial onboarding</strong> — the first 72 hours determine activation. Empty
+                states, unclear next steps, and forced setup chores kill conversion to paid.
+              </li>
+              <li>
+                <strong>Upgrade and expansion paths</strong> — existing customers often hit a wall
+                when they need more seats, usage, or features. Removing that wall is cheaper than
+                acquiring a new customer.
+              </li>
+            </ul>
+            <p>
+              The diagnostic weights these pillars by the actual data in your funnel, not by what
+              feels important.
+            </p>
+          </Section>
+
+          <Section title="Try it: SaaS CRO ROI calculator">
+            <SaasCroCalculator />
+            <p className="mt-[21px] text-[14px] leading-[1.65] text-[#121416]/70">
+              This calculator uses a single conversion-layer lift. The full diagnostic models the
+              three-layer funnel, accounts for churn, expansion, and cross-layer effects, and
+              returns a confidence band.
+            </p>
+          </Section>
+
+          <Section title="From content to case study">
+            <p>
+              The best SaaS CRO content does not just list tactics. It shows the math. A case study
+              should include:
+            </p>
+            <ul className="ml-[21px] list-disc space-y-[8px]">
+              <li>Baseline funnel metrics by layer.</li>
+              <li>The specific pillar and friction diagnosed.</li>
+              <li>The projected lift before implementation.</li>
+              <li>The actual measured lift after stabilization.</li>
+              <li>The projected vs. realized ROI and the reconciliation.</li>
+            </ul>
+            <p>
+              That last step — reconciliation — is what makes the approach scientific. When the
+              real number differs from the projection, the model learns. The next diagnostic is more
+              precise.
+            </p>
+          </Section>
+
+          <div className="mt-[34px] border-t border-[#121416]/15 pt-[34px]">
+            <p className="font-mono-data text-[11px] uppercase tracking-[0.18em] text-[#121416]/55">
+              Next step
+            </p>
+            <h2 className="mt-[13px] font-display text-[22px] font-semibold uppercase tracking-[0.04em] text-[#121416]">
+              Run the SaaS diagnostic on your funnel.
+            </h2>
+            <p className="mt-[13px] text-[15px] leading-[1.7]">
+              The calculator above isolates one layer. Your real funnel leaks across acquisition,
+              activation, and revenue. The diagnostic models all three and ranks the highest-ROI
+              fix.
+            </p>
+            <Link
+              to="/diagnostic"
+              className="mt-[34px] inline-flex items-center justify-center bg-[#121416] px-[34px] py-[16px] font-mono-data text-[12px] font-semibold uppercase tracking-[0.14em] text-[#eef1f2] transition-colors hover:bg-[#121416]/85"
+            >
+              Start your diagnostic
+            </Link>
+          </div>
+
+          <div className="mt-[21px]">
+            <Link
+              to="/"
+              className="font-mono-data text-[11px] uppercase tracking-[0.18em] text-[#121416]/55 underline-offset-4 hover:underline"
+            >
+              ← Back to home
+            </Link>
+          </div>
+        </div>
+      </article>
+      <Footer />
+      <TelegramBubble />
+    </main>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="flex flex-col gap-[13px]">
+      <h2 className="font-display text-[22px] font-semibold uppercase tracking-[0.04em] text-[#121416] sm:text-[26px]">
+        {title}
+      </h2>
+      <div className="flex flex-col gap-[13px] text-[16px] leading-[1.7]">{children}</div>
+    </section>
+  );
+}
+
+function Formula({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="my-[8px] border-l-2 border-[#121416] bg-[#121416]/[0.04] px-[21px] py-[16px] font-mono-data text-[14px] leading-[1.6] text-[#121416]">
+      {children}
+    </div>
+  );
+}
+
+function SaasCroCalculator() {
+  const [visitors, setVisitors] = useState(20000);
+  const [trialCr, setTrialCr] = useState(4.0);
+  const [activation, setActivation] = useState(40.0);
+  const [trialToPaid, setTrialToPaid] = useState(25.0);
+  const [arpu, setArpu] = useState(149);
+  const [churn, setChurn] = useState(5.0);
+  const [grossMargin, setGrossMargin] = useState(80.0);
+  const [lift, setLift] = useState(25.0);
+  const [investment, setInvestment] = useState(25000);
+
+  const result = useMemo(() => {
+    const visitorsBase = visitors;
+    const trialCrOld = trialCr / 100;
+    const trialCrNew = trialCrOld * (1 + lift / 100);
+    const activationRate = activation / 100;
+    const trialToPaidRate = trialToPaid / 100;
+    const margin = grossMargin / 100;
+    const monthlyChurn = churn / 100;
+    const lifetime = monthlyChurn > 0 ? 1 / monthlyChurn : 0;
+    const ltv = arpu * margin * lifetime;
+
+    const paidCustomersOld =
+      visitorsBase * trialCrOld * activationRate * trialToPaidRate;
+    const paidCustomersNew =
+      visitorsBase * trialCrNew * activationRate * trialToPaidRate;
+    const incrementalCustomers = paidCustomersNew - paidCustomersOld;
+    const incrementalLtv = incrementalCustomers * ltv;
+    const roi = investment > 0 ? ((incrementalLtv - investment) / investment) * 100 : 0;
+    const payback = incrementalLtv > 0 ? (investment / incrementalLtv) * 12 : null;
+
+    return {
+      lifetime,
+      ltv,
+      paidCustomersOld,
+      paidCustomersNew,
+      incrementalCustomers,
+      incrementalLtv,
+      roi,
+      payback,
+    };
+  }, [visitors, trialCr, activation, trialToPaid, arpu, churn, grossMargin, lift, investment]);
+
+  const fmt = (n: number) =>
+    n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
+  return (
+    <div className="border border-[#121416]/20 bg-white p-[21px] sm:p-[28px]">
+      <div className="grid gap-[16px] sm:grid-cols-2">
+        <Field
+          label="Monthly visitors"
+          value={visitors}
+          onChange={setVisitors}
+          min={0}
+          step={1000}
+        />
+        <Field
+          label="Visitor-to-trial rate (%)"
+          value={trialCr}
+          onChange={setTrialCr}
+          min={0}
+          step={0.1}
+        />
+        <Field
+          label="Trial activation rate (%)"
+          value={activation}
+          onChange={setActivation}
+          min={0}
+          step={1}
+        />
+        <Field
+          label="Trial-to-paid rate (%)"
+          value={trialToPaid}
+          onChange={setTrialToPaid}
+          min={0}
+          step={1}
+        />
+        <Field label="ARPU ($/mo)" value={arpu} onChange={setArpu} min={0} step={10} />
+        <Field label="Monthly churn (%)" value={churn} onChange={setChurn} min={0} step={0.1} />
+        <Field
+          label="Gross margin (%)"
+          value={grossMargin}
+          onChange={setGrossMargin}
+          min={0}
+          max={100}
+          step={1}
+        />
+        <Field
+          label="Projected visitor-to-trial lift (%)"
+          value={lift}
+          onChange={setLift}
+          min={0}
+          step={1}
+        />
+        <Field
+          label="CRO investment ($)"
+          value={investment}
+          onChange={setInvestment}
+          min={0}
+          step={1000}
+        />
+      </div>
+
+      <div className="mt-[28px] grid gap-[13px] border-t border-[#121416]/15 pt-[21px] sm:grid-cols-2">
+        <Result label="Average customer lifetime (mo)" value={result.lifetime.toFixed(1)} />
+        <Result label="Customer LTV" value={fmt(result.ltv)} />
+        <Result label="Paid customers / mo (baseline)" value={result.paidCustomersOld.toFixed(0)} />
+        <Result
+          label="Paid customers / mo (projected)"
+          value={result.paidCustomersNew.toFixed(0)}
+        />
+        <Result
+          label="Incremental customers / mo"
+          value={result.incrementalCustomers.toFixed(1)}
+          highlight
+        />
+        <Result label="Incremental LTV" value={fmt(result.incrementalLtv)} highlight />
+        <Result label="Lifetime ROI" value={`${result.roi.toFixed(0)}%`} highlight />
+        <Result
+          label="Payback period"
+          value={result.payback ? `${result.payback.toFixed(1)} months` : "—"}
+        />
+      </div>
+    </div>
+  );
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  min,
+  max,
+  step,
+}: {
+  label: string;
+  value: number;
+  onChange: (n: number) => void;
+  min?: number;
+  max?: number;
+  step?: number;
+}) {
+  const id = useId();
+  return (
+    <div className="flex flex-col gap-[6px]">
+      <label htmlFor={id} className="font-mono-data text-[11px] uppercase tracking-[0.14em] text-[#121416]/65">
+        {label}
+      </label>
+      <input
+        id={id}
+        type="number"
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        onChange={(e) => onChange(Number(e.target.value) || 0)}
+        className="border border-[#121416]/25 bg-white px-[12px] py-[10px] font-mono-data text-[15px] text-[#121416] focus:border-[#121416] focus:outline-none"
+      />
+    </div>
+  );
+}
+
+function Result({
+  label,
+  value,
+  highlight = false,
+}: {
+  label: string;
+  value: string;
+  highlight?: boolean;
+}) {
+  return (
+    <div className="flex flex-col gap-[4px]">
+      <span className="font-mono-data text-[10px] uppercase tracking-[0.14em] text-[#121416]/60">
+        {label}
+      </span>
+      <span
+        className={`font-display text-[20px] font-semibold tracking-[0.01em] ${
+          highlight ? "text-[#121416]" : "text-[#121416]/85"
+        }`}
+      >
+        {value}
+      </span>
+    </div>
+  );
+}
